@@ -11,8 +11,11 @@ jobs:
     steps:
       - name: Send Dispatch Event to repo-website
         run: |
-          curl -X POST -H "Accept: application/vnd.github.everest-preview+json" \
-               -H "Authorization: Bearer ${{ secrets.REPO_WEBSITE_ACCESS_TOKEN }}" \
-               -H "Content-Type: application/json" \
-               https://api.github.com/repos/YOUR_GITHUB_USERNAME/repo-website/dispatches \
-               -d '{"event_type": "test-trigger"}'
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+                  -H "Accept: application/vnd.github.everest-preview+json" \
+                  -H "Authorization: Bearer ${{ secrets.REPO_WEBSITE_ACCESS_TOKEN }}" \
+                  -H "Content-Type: application/json" \
+                  https://api.github.com/repos/YOUR_GITHUB_USERNAME/repo-website/dispatches \
+                  -d '{"event_type": "test-trigger"}')
+
+          [[ "$STATUS" -ge 200 && "$STATUS" -lt 300 ]] || { echo "Error: HTTP $STATUS"; exit 1; }
