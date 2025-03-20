@@ -15,7 +15,7 @@ jobs:
                   -H "Accept: application/vnd.github.everest-preview+json" \
                   -H "Authorization: Bearer ${{ secrets.REPO_WEBSITE_ACCESS_TOKEN }}" \
                   -H "Content-Type: application/json" \
-                  https://api.github.com/repos/YOUR_GITHUB_USERNAME/repo-website/dispatches \
+                  https://api.github.com/repos/andy108369/repo-website/dispatches \
                   -d '{"event_type": "test-trigger"}')
 
           [[ "$STATUS" -ge 200 && "$STATUS" -lt 300 ]] || { echo "Error: HTTP $STATUS"; exit 1; }
