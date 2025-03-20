@@ -5,6 +5,13 @@ on:
     branches:
       - main
 
+# REPO_WEBSITE_ACCESS_TOKEN is a PAT token that allows andy108369/repo-aep to trigger workflows in andy108369/repo-website via repository dispatch.
+# PAT token repo access is limited to andy108369/repo-website only with the following permissions necessary for triggering the workflow:
+# - Actions: Read & Write (Trigger workflows)
+# - Workflows: Read & Write (Dispatch events)
+# - Contents: Read & Write (Required for repository dispatch)
+# - Metadata: Read (Mandatory)
+
 jobs:
   dispatch-event:
     runs-on: ubuntu-latest
