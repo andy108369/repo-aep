@@ -16,7 +16,7 @@ To enable the workflow, create a **fine-grained Personal Access Token (PAT)** wi
 
 - ✅ **Actions: Read & Write** (Trigger workflows)
 - ✅ **Workflows: Read & Write** (Dispatch events)
-- ✅ **Contents: Read** (Access repository contents)
+- ✅ **Contents: Read & Write** (Required for repository dispatch)
 - ✅ **Metadata: Read** (Mandatory)
 
 ### **Step 1: Generate the PAT**
@@ -51,4 +51,5 @@ To enable the workflow, create a **fine-grained Personal Access Token (PAT)** wi
 
 ### ⚠️ Notes
 - **GITHUB_TOKEN won't work** for triggering workflows in another repo.
-- **Only fine-grained PATs with `Workflows: Write` work** for repository dispatch events.
+- **Fine-grained PATs require `Contents: Read & Write` for repository dispatch to work.**
+- If the workflow still fails, check if the token is scoped to `repo-website` only.
